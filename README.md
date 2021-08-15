@@ -1,4 +1,4 @@
-# cookiecutter_ros2_python_node
+# cookiecutter_ros2_cpp_node
 Cookiecutter project which creates a Node template file
 
 
@@ -19,34 +19,29 @@ Cookiecutter project which creates a Node template file
 
 
 ### Example file with only default values
-- filename `new_node.py`
-```python
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-import rclpy
-from rclpy.node import Node
+- filename `new_node.cpp`
+```cpp
+#include "rclcpp/rclcpp.hpp"
 
 
-class NewNode(Node):
+class NewNode : public rclcpp::Node
+{
+public:
+    NewNode(): Node("new_node")
+    {
+        RCLCPP_INFO(get_logger(), "Hello Cpp Node");
+    }
 
-  def __init__(self):
-    super().__init__("new_node")
-    self.logger_info("Hello ROS2")
+};
 
-  def logger_info(self, text: str):
-    self.get_logger().info(text)
+int main(int argc, char **argv)
+{
+    rclcpp::init(argc, argv);
 
+    auto node = std::make_shared<NewNode>();
 
-def main(*args):
-  rclpy.init(args=args)
-  node = NewNode()
-  try:
-    rclpy.spin(node)  # will hold/keep alive node
-  finally:
-    rclpy.shutdown()
-
-
-if __name__ == '__main__':
-  main()
-
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}
 ```
