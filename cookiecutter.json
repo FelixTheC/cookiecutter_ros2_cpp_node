@@ -1,6 +1,6 @@
 {
   "node_file_name": "new_node",
-  "node_class_name": "{{cookiecutter.node_file_name.title().replace('_', '')}}",
+  "node_class_name": "{{cookiecutter.node_file_name.title().replace('_', '')}}Node",
   "node_name": "{{cookiecutter.node_file_name}}",
   "ros2_node": "ros2_cpp_node_{{random_ascii_string(12)}}",
   "final_destination": "/home/<username>/ros2_ws/src/<package_name>/<package_name>",
